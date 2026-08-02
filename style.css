@@ -1,0 +1,617 @@
+/* ============================================================
+   个人简历网页 · 「技术蓝图 / 工程图纸」风格
+   —— 暖纸底色 + 墨蓝墨线 + 朱砂标注 + 等宽字体编号
+   ============================================================ */
+
+/* ---------- 设计变量 ---------- */
+:root {
+  --paper:      #f6f3eb;   /* 暖纸色 */
+  --paper-deep: #efeadd;   /* 深一档纸色（卡片底） */
+  --ink:        #1b2437;   /* 墨蓝（主文字） */
+  --ink-soft:   #55617a;   /* 次级文字 */
+  --ink-faint:  #8b94a6;   /* 弱文字 */
+  --accent:     #d6451f;   /* 朱砂红（标注 / 强调） */
+  --line:       #d8d2c0;   /* 纸上细线 */
+  --line-strong:#b9b19a;   /* 深一线 */
+  --grid:       rgba(27, 36, 55, 0.055);   /* 网格线 */
+  --font-serif: 'Noto Serif SC', 'Songti SC', 'STSong', 'SimSun', serif;
+  --font-mono:  'JetBrains Mono', 'Consolas', 'Courier New', monospace;
+  --font-body:  -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', sans-serif;
+  --shadow-card: 0 1px 0 rgba(27,36,55,0.04), 0 6px 18px rgba(27,36,55,0.06);
+  --radius: 10px;
+}
+
+/* ---------- 基础 ---------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background-color: var(--paper);
+  /* 工程网格 + 细噪点，营造图纸质感 */
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  background-size: 34px 34px, 34px 34px, 140px 140px;
+  background-attachment: fixed, fixed, fixed;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page-frame {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 28px 64px;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* 占位符：虚线下划线，提示用户填写 */
+.ph {
+  border-bottom: 1.5px dashed var(--accent);
+  color: var(--ink-soft);
+  cursor: help;
+}
+
+/* ---------- Hero 头部 ---------- */
+.hero {
+  position: relative;
+  padding: 56px 0 40px;
+}
+
+.hero-meta {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line-strong);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+}
+
+.hero-main {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  padding-top: 44px;
+}
+
+.hero-kicker {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.name {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: clamp(3rem, 8vw, 4.4rem);
+  line-height: 1.15;
+  letter-spacing: 0.04em;
+}
+
+.role {
+  margin-top: 10px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.role-sep {
+  color: var(--accent);
+  font-weight: 400;
+  margin: 0 6px;
+}
+
+.tagline {
+  margin-top: 6px;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+/* 联系方式 */
+.contact {
+  list-style: none;
+  margin-top: 26px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 28px;
+}
+
+.contact li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.92rem;
+  font-family: var(--font-mono);
+}
+
+.c-label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 3px;
+  padding: 1px 6px;
+  background: rgba(214, 69, 31, 0.06);
+}
+
+/* 右侧竖向规格标注 */
+.hero-aside {
+  display: flex;
+  align-items: stretch;
+  flex-shrink: 0;
+}
+
+.spec {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-left: 1px solid var(--line);
+  padding-left: 18px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--ink-faint);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.spec span:first-child {
+  color: var(--accent);
+}
+
+/* ---------- 目录导航 ---------- */
+.toc {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  gap: 4px;
+  margin: 10px 0 52px;
+  padding: 10px 14px;
+  background: rgba(246, 243, 235, 0.92);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  font-family: var(--font-mono);
+}
+
+.toc a {
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  transition: color 0.2s, background 0.2s;
+}
+
+.toc a:hover { color: var(--ink); text-decoration: none; background: rgba(27, 36, 55, 0.06); }
+
+.toc a.active {
+  color: var(--paper);
+  background: var(--ink);
+}
+
+/* ---------- 分区通用 ---------- */
+.sec { margin-bottom: 64px; }
+
+.sec h2 {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 28px;
+}
+
+.sec-num {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  padding: 2px 8px;
+  letter-spacing: 0.1em;
+  transform: translateY(-4px);
+}
+
+.sec-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--line-strong) 0%, var(--line) 60%, transparent 100%);
+}
+
+/* ---------- 01 关于我 ---------- */
+.about-text {
+  font-size: 1.02rem;
+  max-width: 72ch;
+  color: var(--ink);
+}
+
+.about-text strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ---------- 02 教育背景 ---------- */
+.edu-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.35);
+  padding: 24px 28px;
+  box-shadow: var(--shadow-card);
+}
+
+.edu-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.edu-main h3 {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+}
+
+.edu-sub { color: var(--ink-soft); font-size: 0.95rem; margin-top: 2px; }
+
+.edu-time {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+
+.edu-courses {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--line-strong);
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 10px;
+}
+
+/* ---------- 03 专业技能 ---------- */
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.skill-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.35);
+  padding: 22px 24px;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 4px;
+  height: 100%;
+  background: var(--accent);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--line-strong);
+  box-shadow: 0 10px 26px rgba(27, 36, 55, 0.1);
+}
+
+.skill-card:hover::before { opacity: 1; }
+
+.skill-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.skill-code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--paper);
+  background: var(--ink);
+  border-radius: 4px;
+  padding: 2px 8px;
+}
+
+.skill-head h3 { font-family: var(--font-serif); font-size: 1.15rem; }
+
+.skill-en {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.skill-desc {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  margin-top: 12px;
+}
+
+.skill-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.skill-list li {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  padding: 2px 12px;
+  color: var(--ink);
+  background: var(--paper-deep);
+}
+
+/* ---------- 04 项目经历 ---------- */
+.project-card {
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--ink);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.35);
+  padding: 24px 28px;
+  margin-bottom: 18px;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(27, 36, 55, 0.1);
+}
+
+.project-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.project-title {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.project-code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  padding: 1px 8px;
+  letter-spacing: 0.08em;
+}
+
+.project-title h3 { font-family: var(--font-serif); font-size: 1.18rem; }
+
+.project-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--ink-faint);
+}
+
+.project-link {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.project-desc { margin-top: 14px; font-size: 0.95rem; color: var(--ink); }
+
+.project-points {
+  margin: 10px 0 0 20px;
+  display: grid;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.project-points strong { color: var(--ink); font-weight: 600; }
+
+.tech-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--line-strong);
+}
+
+.tech-tags li {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 5px;
+  padding: 2px 10px;
+  color: var(--ink);
+  background: var(--paper-deep);
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.tech-tags li:hover { border-color: var(--accent); color: var(--accent); }
+
+/* 项目占位卡片 */
+.project-card.placeholder {
+  border-left-style: dashed;
+  border-left-color: var(--line-strong);
+  background: transparent;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 96px;
+}
+
+.project-card.placeholder:hover { box-shadow: none; }
+
+.placeholder-text {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+/* ---------- 05 荣誉与证书 ---------- */
+.honor-list {
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+.honor-item {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.35);
+  padding: 14px 18px;
+  font-size: 0.92rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.placeholder-line {
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  font-size: 0.92rem;
+}
+
+/* ---------- 页脚 ---------- */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line-strong);
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+}
+
+.back-top {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+}
+
+.back-top:hover { color: var(--accent); text-decoration: none; }
+
+/* ---------- 入场动画 ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- 响应式 ---------- */
+@media (max-width: 720px) {
+  .page-frame { padding: 0 18px 48px; }
+  .hero { padding-top: 40px; }
+  .hero-main { padding-top: 32px; }
+  .hero-aside { display: none; }
+  .skill-grid { grid-template-columns: 1fr; }
+  .sec { margin-bottom: 48px; }
+  .project-head { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .toc { overflow-x: auto; }
+  .toc a { white-space: nowrap; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---------- 打印样式（Ctrl+P 导出 PDF 投递） ---------- */
+@media print {
+  body {
+    background: #fff;
+    background-image: none;
+    font-size: 12px;
+  }
+
+  .page-frame { max-width: none; padding: 0; }
+
+  .hero { padding: 8px 0 16px; }
+  .hero-aside, .toc, .back-top { display: none; }
+
+  .hero-meta { border-bottom: 1px solid #000; color: #555; }
+
+  .name { font-size: 2.6rem; }
+  .role { font-size: 1.05rem; }
+  .tagline { font-size: 0.85rem; }
+
+  .contact { margin-top: 14px; gap: 6px 20px; }
+  .contact li { font-size: 0.8rem; }
+
+  .sec { margin-bottom: 26px; }
+  .sec h2 { font-size: 1.2rem; margin-bottom: 12px; }
+
+  .sec-line { background: #999; }
+
+  .skill-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .skill-card, .edu-card, .project-card {
+    border: 1px solid #bbb;
+    background: #fff;
+    box-shadow: none;
+    break-inside: avoid;
+    padding: 14px 16px;
+  }
+
+  .project-card { margin-bottom: 12px; }
+  .project-card.placeholder { display: none; }
+
+  .footer { border-top: 1px solid #999; }
+  .footer p { font-size: 0.75rem; }
+
+  a { color: inherit; }
+  a[href^="http"] { text-decoration: none; }
+}
