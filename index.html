@@ -169,6 +169,7 @@
           <ul class="project-points">
             <li>采用 <strong>bge-small-zh-v1.5</strong> 向量模型与 <strong>BM25（jieba 分词）</strong>双路召回，通过 <strong>RRF</strong> 加权融合排序，兼顾语义理解与关键词精确匹配</li>
             <li>使用 <strong>FastAPI</strong> 提供检索与问答接口，<strong>ChromaDB</strong> 存储向量，集成 <strong>DeepSeek API</strong> 生成基于检索结果的回答</li>
+            <li>内置 20+ 道高频 Java 面试题知识库，回答附<strong>来源溯源卡片</strong>（源文件 + 标题 + 原文片段），防幻觉提示词，<strong>Docker</strong> 一键部署</li>
           </ul>
 
           <ul class="tech-tags">
@@ -197,6 +198,7 @@
             <li>基于 <strong>Spring Boot 3</strong> + <strong>MyBatis-Plus</strong> + <strong>MySQL</strong> 全栈实现，原生 HTML/CSS/JS 响应式前端；<strong>JWT</strong> + BCrypt 用户认证</li>
             <li><strong>SSE 流式输出</strong> + 虚拟线程实现打字机效果；对接 P-01 知识库服务注入检索知识点，服务不可用时自动降级纯 LLM（3s/8s 超时）</li>
             <li>面试结束<strong>异步生成评估报告</strong>（总分 / 逐题点评 / 改进建议），AI 返回 JSON 解析失败时降级纯文本，保证功能可用</li>
+            <li><strong>SSE 断线自动落库</strong>：流式内容已生成部分不丢失，刷新后自动恢复，提升弱网环境体验</li>
           </ul>
 
           <ul class="tech-tags">
@@ -205,18 +207,33 @@
           </ul>
         </article>
 
-        <!-- ⭐ 项目占位 2：复制上方模板后替换本卡片 -->
-        <article class="project-card placeholder">
+        <article class="project-card">
           <div class="project-head">
             <div class="project-title">
               <span class="project-code">P-03</span>
-              <h3>更多项目整理中</h3>
+              <h3>多端电商系统（微服务架构 · 全栈）</h3>
             </div>
             <div class="project-meta">
-              <span class="project-time">—</span>
+              <span class="project-time">2026.08 — 至今</span>
+              <a class="project-link" href="https://github.com/HUA0411/multi-terminal-ecommerce" target="_blank" rel="noopener">GitHub ↗</a>
             </div>
           </div>
-          <p class="project-desc placeholder-text">TO BE ADDED — 项目补充中，敬请期待</p>
+
+          <p class="project-desc">
+            一套后端支撑 PC / H5 / 小程序 / APP 多端前端的电商系统，覆盖登录、商品 SKU、购物车实时同步、
+            下单支付、售后物流完整交易闭环，并实现多商户、B2B/B2C 混合、多语言多货币等进阶能力。
+          </p>
+          <ul class="project-points">
+            <li>按业务域拆分为 <strong>9 个微服务</strong>（认证/商品/购物车/交易/营销/商家/内容/平台/看板）+ <strong>API 网关</strong>，服务间令牌接口通信、独立端口与数据表隔离，可平滑切换模块化单体形态</li>
+            <li><strong>WebSocket</strong> 房间订阅模型实现购物车跨端实时同步、直播弹幕/点赞、秒杀抢购、管理看板实时推送</li>
+            <li><strong>安全风控</strong>：JWT 统一认证（user / merchant / admin 三角色数据隔离）、登录/秒杀/领券频控防刷、支付回调 HMAC 验签、风控事件审计</li>
+            <li>营销体系：优惠券、<strong>秒杀防超卖</strong>（并发压测验证）、邀请裂变、积分商城、拼团、CMS 页面 DIY、数据看板与 CSV 对账导出；<strong>383 项自动化断言全绿</strong>（集成 × 双数据层 × 单/微服务双形态）</li>
+          </ul>
+
+          <ul class="tech-tags">
+            <li>Node.js</li><li>Express</li><li>Vue 3</li><li>Element Plus</li><li>uni-app</li>
+            <li>MySQL 8</li><li>WebSocket</li><li>JWT</li><li>Docker</li>
+          </ul>
         </article>
       </section>
 
