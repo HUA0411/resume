@@ -154,6 +154,36 @@
           <div class="project-head">
             <div class="project-title">
               <span class="project-code">P-01</span>
+              <h3>多租户企业 ERP 进销存系统（全栈）</h3>
+            </div>
+            <div class="project-meta">
+              <span class="project-time">2026.08 — 2026.09</span>
+              <a class="project-link" href="https://github.com/HUA0411/erp-management-system" target="_blank" rel="noopener">GitHub ↗</a>
+            </div>
+          </div>
+
+          <p class="project-desc">
+            面向中小企业的多租户 ERP 系统，覆盖采购、销售、库存、财务全链路业务闭环，并内置可对话的 AI 助手；
+            以 npm workspaces monorepo 组织 shared / server / web 三包，约 24.8k 行代码、31 张数据表。
+          </p>
+          <ul class="project-points">
+            <li>后端 <strong>NestJS 11 + TypeORM + MySQL 8</strong>，前端 <strong>Vue 3 + Element Plus + Pinia + ECharts</strong>，22 个业务页面、13 个数据库迁移</li>
+            <li><strong>行级多租户隔离</strong>：实体基类强制 <strong>company_id</strong>，用 <strong>AsyncLocalStorage</strong> 贯穿请求链路传递租户上下文，写入时由 TypeORM Subscriber 兜底注入，缺失上下文直接拒绝</li>
+            <li><strong>并发正确性</strong>：出库等状态流转改造为<strong>条件 UPDATE 原子抢占</strong>——复现并修复了「5 并发出库全部成功、库存被扣 5 次」的竞态；单号生成用 <strong>seq_counter + FOR UPDATE</strong> 保证不重号</li>
+            <li><strong>内嵌 AI Agent（3.6k 行）</strong>：工具按 <strong>RBAC 权限</strong>过滤，写操作走「提案 → 人工确认」再落库；凭据以 <strong>AES-256-GCM</strong> 加密存储，外呼地址做 <strong>SSRF</strong> 校验</li>
+            <li><strong>52 个单元测试 + 73 个 e2e 测试</strong>（真实 MySQL 实例）全部通过，并发用例覆盖 20 并发建单不重号、同一订单并发出库只成功一次</li>
+          </ul>
+
+          <ul class="tech-tags">
+            <li>NestJS</li><li>TypeORM</li><li>MySQL 8</li><li>Vue 3</li><li>Element Plus</li>
+            <li>Pinia</li><li>ECharts</li><li>多租户</li><li>AI Agent</li>
+          </ul>
+        </article>
+
+        <article class="project-card">
+          <div class="project-head">
+            <div class="project-title">
+              <span class="project-code">P-02</span>
               <h3>Java 面试知识库智能问答系统（RAG）</h3>
             </div>
             <div class="project-meta">
@@ -181,7 +211,7 @@
         <article class="project-card">
           <div class="project-head">
             <div class="project-title">
-              <span class="project-code">P-02</span>
+              <span class="project-code">P-03</span>
               <h3>AI 面试模拟系统（Spring Boot 全栈）</h3>
             </div>
             <div class="project-meta">
@@ -210,7 +240,7 @@
         <article class="project-card">
           <div class="project-head">
             <div class="project-title">
-              <span class="project-code">P-03</span>
+              <span class="project-code">P-04</span>
               <h3>多端电商系统（微服务架构 · 全栈）</h3>
             </div>
             <div class="project-meta">

@@ -15,7 +15,7 @@
   --line-strong:#b9b19a;   /* 深一线 */
   --grid:       rgba(27, 36, 55, 0.055);   /* 网格线 */
   --font-serif: 'Noto Serif SC', 'Songti SC', 'STSong', 'SimSun', serif;
-  --font-mono:  'JetBrains Mono', 'Consolas', 'Courier New', monospace;
+  --font-mono:  'JetBrains Mono', 'Consolas', 'Courier New', 'Microsoft YaHei', 'PingFang SC', monospace;
   --font-body:  -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', sans-serif;
   --shadow-card: 0 1px 0 rgba(27,36,55,0.04), 0 6px 18px rgba(27,36,55,0.06);
   --radius: 10px;
@@ -49,6 +49,14 @@ body {
 
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* 键盘焦点环：只有 Tab 键导航时出现，鼠标点击不触发（无障碍必需） */
+a:focus-visible,
+.back-top:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
 
 /* 占位符：虚线下划线，提示用户填写 */
 .ph {
