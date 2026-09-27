@@ -298,7 +298,16 @@ a:focus-visible,
   gap: 6px 10px;
 }
 
-/* ---------- 03 专业技能 ---------- */
+/* 交付经历卡片里的要点列表：与「主修课程」一致，用虚线分隔开（属 03 项目交付经历） */
+.exp-points {
+  margin: 16px 0 0 0;
+  padding-top: 14px;
+  padding-left: 20px;
+  border-top: 1px dashed var(--line-strong);
+  gap: 8px;
+}
+
+/* ---------- 04 专业技能 ---------- */
 .skill-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -385,7 +394,7 @@ a:focus-visible,
   background: var(--paper-deep);
 }
 
-/* ---------- 04 项目经历 ---------- */
+/* ---------- 05 项目经历 ---------- */
 .project-card {
   border: 1px solid var(--line);
   border-left: 4px solid var(--ink);
@@ -500,7 +509,7 @@ a:focus-visible,
   margin-top: 6px;
 }
 
-/* ---------- 05 荣誉与证书 ---------- */
+/* ---------- 06 荣誉与证书 ---------- */
 .honor-list {
   list-style: none;
   display: grid;
