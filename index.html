@@ -5,6 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="张国华 — Java 后端 / AI 应用开发 · 2027 届软件工程应届生个人简历">
   <title>张国华 · 个人简历 — Java 后端 / AI 应用开发</title>
+
+  <!-- 社交分享卡片：链接发到微信 / QQ / LinkedIn 时显示的标题、描述与配图 -->
+  <meta property="og:type" content="profile">
+  <meta property="og:site_name" content="张国华 · 个人简历">
+  <meta property="og:title" content="张国华 · 个人简历 — Java 后端 / AI 应用开发">
+  <meta property="og:description" content="2027 届软件工程本科 · 多租户 ERP / RAG 问答 / 多端电商 · 意向城市：深圳 / 杭州 / 广州">
+  <meta property="og:url" content="https://hua0411.github.io/resume/">
+  <meta property="og:image" content="https://hua0411.github.io/resume/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="张国华 · 个人简历">
+  <meta property="og:locale" content="zh_CN">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="张国华 · 个人简历 — Java 后端 / AI 应用开发">
+  <meta name="twitter:description" content="2027 届软件工程本科 · 多租户 ERP / RAG 问答 / 多端电商">
+  <meta name="twitter:image" content="https://hua0411.github.io/resume/og-image.png">
+
+  <!-- 站点图标 -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="theme-color" content="#f6f3eb">
+
   <!-- 字体：标题用思源宋体（书卷气），数字/编号用 JetBrains Mono（工程感）；加载失败时回退系统字体 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-serif-sc@5/700.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5/400.css">
@@ -194,7 +217,7 @@
 
           <p class="project-desc">
             基于 RAG 架构构建 Java 面试知识库问答系统，覆盖「文档切分 → 向量化入库 → 混合检索 → LLM 生成」完整链路，
-            按里程碑推进开发，9/9 任务完成，全链路验证通过。
+            按功能里程碑迭代开发，知识库可由原始文档一键重建（清洗 → 切分 → 向量化入库）。
           </p>
           <ul class="project-points">
             <li>采用 <strong>bge-small-zh-v1.5</strong> 向量模型与 <strong>BM25（jieba 分词）</strong>双路召回，通过 <strong>RRF</strong> 融合排序，兼顾语义理解与关键词精确匹配</li>
